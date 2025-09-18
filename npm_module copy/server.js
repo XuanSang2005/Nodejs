@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3500;
 
 const serveFile = async (filePath, contentType, response) => {
     try {
-        const rawData = await fsPromises.readFile(
+        const rawData = await fsPromises.readFil(
             filePath,
             !contentType.includes('image') ? 'utf8' : ''
         );
@@ -82,6 +82,8 @@ const server = http.createServer((req, res) => {
         // Các file tĩnh khác (CSS, JS, hình ảnh, JSON...)
         filePath = path.join(__dirname, req.url);
     }
+
+
 
     // makes .html extension not required in the browser
     if (!extension && req.url.slice(-1) !== '/') filePath += '.html';
